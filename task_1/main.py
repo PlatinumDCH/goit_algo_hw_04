@@ -44,8 +44,11 @@ def total_salary(file_path):
         average_salary = total_salary / valid_workers
         return total_salary, int(average_salary)
 
-    except Exception:
-        return 'Error occurred while processing the file'
+    except OSError:
+        return 'Error: File could not be read. It may be corrupted.'
+    except UnicodeDecodeError:
+        return 'Error: File encoding issue. The file might be corrupted or in the wrong format.'
+    except Exception as e:
+        return f'An unexpected error occurred: {str(e)}'
 
 
-print(total_salary(path))

@@ -63,6 +63,11 @@ class TestTotalSalary(unittest.TestCase):
         """not found data_file"""
         result = total_salary("dummy_path.txt")
         self.assertEqual(result, "Empty file: no workers to process")
+    
+    @patch('builtins.open', side_effect=OSError)
+    def test_corrupted_file(self, mock_file):
+        result = total_salary('corrupted_file.txt')
+        self.assertEqual(result, 'Error: File could not be read. It may be corrupted.')
 
 
 if __name__ == "__main__":
