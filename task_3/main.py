@@ -2,6 +2,7 @@ from pathlib import Path
 from colorama import Fore, init
 import sys
 
+
 class DirectoryExplorer:
     def __init__(self, path: Path):
         self.path = path
@@ -31,7 +32,6 @@ class DirectoryExplorer:
 
 
 if __name__ == "__main__":
-   
 
     init(autoreset=True)
 
