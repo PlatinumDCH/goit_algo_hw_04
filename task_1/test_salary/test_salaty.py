@@ -16,7 +16,7 @@ class TestTotalSalary(unittest.TestCase):
     def test_valid_data(self, mock_file):
         """correct data_file"""
         result = total_salary("dummy_path.txt")
-        self.assertEqual(result, ('15500', '3100'))
+        self.assertEqual(result, (15500, 3100.0))
 
     @patch(
         "builtins.open",
