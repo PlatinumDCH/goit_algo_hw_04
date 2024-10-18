@@ -18,19 +18,15 @@ def get_cats_info(path):
                     return f"Invalid data format"
 
                 id_obj, name_obj, age_obj = parts
-               
-                try:
-                    age = int(age_obj)
-                except ValueError:
-                    return f"Invalid age value"
+
+                if not age_obj.isdigit():
+                    return "Invalid data format"
                 
                 cats_list.append({
                     "id": id_obj,
                     "name": name_obj,
-                    "age": age
-                    })
-            
-
+                    "age":age_obj,
+                        })
     except OSError:
         return "Error: File could not be read. It may be corrupted."
     except UnicodeDecodeError:
