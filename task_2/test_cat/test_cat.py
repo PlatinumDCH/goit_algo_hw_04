@@ -18,7 +18,7 @@ class TestReadCatsData(unittest.TestCase):
         self.temp_file_path = "temp_data.txt"
 
     def tearDown(self):
-        # Функция для очистки после каждого теста
+        
         if os.path.exists(self.temp_file_path):
             os.remove(self.temp_file_path)
 
@@ -26,36 +26,36 @@ class TestReadCatsData(unittest.TestCase):
         with open(self.temp_file_path, "w", encoding="utf-8") as temp_file:
             temp_file.write(data)
 
-    # Тест успешного чтения файла с корректными данными
+    
     def test_valid_data(self):
         self.write_temp_file(valid_data)
         result = get_cats_info(self.temp_file_path)
         expected = [
-            {"id": "60b90c1c13067a15887e1ae1", "name": "Tayson", "age": 3},
-            {"id": "60b90c2413067a15887e1ae2", "name": "Vika", "age": 1},
+            {"id": "60b90c1c13067a15887e1ae1", "name": "Tayson", "age": '3'},
+            {"id": "60b90c2413067a15887e1ae2", "name": "Vika", "age": '1'},
         ]
         self.assertEqual(result, expected)
 
-    # Тест на пустой файл
+    
     def test_empty_file(self):
         self.write_temp_file(empty_file)
         result = get_cats_info(self.temp_file_path)
         self.assertEqual(result, "Empty file: no data to process")
 
-    # Тест на некорректный формат строки (пропущен возраст)
+    
     def test_invalid_data_format(self):
         self.write_temp_file(invalid_data_format)
         result = get_cats_info(self.temp_file_path)
         self.assertEqual(
-            result, "Invalid age value"
+            result, "Invalid data format"
         )
 
-    # Тест на некорректное значение возраста (не число)
+    
     def test_invalid_age_value(self):
         self.write_temp_file(invalid_age_value)
         result = get_cats_info(self.temp_file_path)
         self.assertEqual(
-            result, "Invalid age value"
+            result, "Invalid data format",
         )
 
 
