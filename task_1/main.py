@@ -41,8 +41,8 @@ def total_salary(file_path):
         if valid_workers == 0:
             return 'No valid workers to calculate salary'
         
-        average_salary = total_salary / valid_workers
-        return total_salary, int(average_salary)
+        average_salary = int(total_salary / valid_workers)
+        return str(total_salary), str(average_salary)
 
     except OSError:
         return 'Error: File could not be read. It may be corrupted.'
